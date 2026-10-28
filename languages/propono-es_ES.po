@@ -22,8 +22,8 @@ msgstr "Propono - Order bump en el checkout para WooCommerce"
 
 #. Plugin URI of the plugin
 #: propono.php
-msgid "https://plogins.com/plogins-bump/"
-msgstr "https://plogins.com/plogins-bump/"
+msgid "https://plogins.com/propono/"
+msgstr "https://plogins.com/propono/"
 
 #. Description of the plugin
 #: propono.php
