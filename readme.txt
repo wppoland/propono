@@ -4,7 +4,7 @@ Tags: woocommerce, order bump, upsell, checkout, conversion
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ Propono adds a single, high-visibility order-bump offer above the payment method
 
 The bump line is tagged privately so it is never confused with a copy the shopper added themselves. Classic (shortcode) checkout.
 
-The full source lives at [github.com/wppoland/plogins-bump](https://github.com/wppoland/plogins-bump).
+The full source lives at [github.com/wppoland/propono](https://github.com/wppoland/propono).
 
 == Installation ==
 
@@ -40,6 +40,9 @@ The full source lives at [github.com/wppoland/plogins-bump](https://github.com/w
 Propono is fully translatable and ships the `propono.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.1 =
+* Links point at the new plogins.com address and the renamed GitHub repository.
 
 = 1.1.0 =
 * Renamed to Propono. The WordPress.org review team asks a plugin name to lead with a distinctive, coined identifier rather than a generic descriptive word. Propono is Esperanto for an offer. The text domain follows the name; the stored data, the settings and every hook are unchanged.

@@ -21,7 +21,7 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: propono.php
-msgid "https://plogins.com/plogins-bump/"
+msgid "https://plogins.com/propono/"
 msgstr ""
 
 #. Description of the plugin

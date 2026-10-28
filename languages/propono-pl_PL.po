@@ -22,7 +22,7 @@ msgstr "Propono - Podbicie zamówienia przy kasie dla WooCommerce"
 
 #. Plugin URI of the plugin
 #: propono.php
-msgid "https://plogins.com/plogins-bump/"
+msgid "https://plogins.com/propono/"
 msgstr "https://plogins.com/pl/propono/"
 
 #. Description of the plugin
