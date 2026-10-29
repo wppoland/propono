@@ -4,7 +4,7 @@ Tags: woocommerce, order bump, upsell, checkout, conversion
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,9 @@ Propono is fully translatable and ships the `propono.pot` template. Translations
 
 == Changelog ==
 
+= 1.1.2 =
+* Security (medium): the optional special price now covers exactly one unit of the bump product and only while the cart holds another product. Before, a shopper could raise the bump quantity or remove everything else and buy any number of units at the special price.
+
 = 1.1.1 =
 * Links point at the new plogins.com address and the renamed GitHub repository.
 
@@ -74,3 +77,8 @@ Propono is fully translatable and ships the `propono.pot` template. Translations
 
 = 1.0.1 =
 * Initial release: single checkout order bump with optional price override.
+
+== Upgrade Notice ==
+
+= 1.1.2 =
+Security release. Only shops that set a special bump price are exposed. Update, nothing else to do.
