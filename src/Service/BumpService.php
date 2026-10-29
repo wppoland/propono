@@ -195,8 +195,24 @@ final class BumpService implements HasHooks
             return;
         }
 
+        // The special price is for one unit added to an order, so it never
+        // applies to a raised quantity or to a cart holding only the bump line.
+        $hasOtherLine = false;
         foreach ($cart->get_cart() as $item) {
+            if (empty($item[self::FLAG])) {
+                $hasOtherLine = true;
+                break;
+            }
+        }
+
+        foreach ($cart->get_cart() as $key => $item) {
             if (! empty($item[self::FLAG]) && isset($item['data']) && $item['data'] instanceof \WC_Product) {
+                if ((int) ($item['quantity'] ?? 1) !== 1) {
+                    $cart->set_quantity((string) $key, 1, false);
+                }
+                if (! $hasOtherLine) {
+                    continue;
+                }
                 // WC_Product::set_price() is typed for a string; it stores the
                 // value as given, so hand it the numeric string we validated.
                 $item['data']->set_price($override);
