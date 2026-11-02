@@ -285,5 +285,26 @@ final class Settings implements HasHooks
             <?php endif; ?>
         </div>
         <?php
+        $isTickerActive = defined('Ticker\\VERSION') || class_exists('\\Ticker\\Plugin');
+        ?>
+        <div class="card" style="max-width: 800px; margin-top: 16px; padding: 18px 22px;">
+            <h2 class="title" style="margin-top: 0; font-size: 15px;"><?php esc_html_e('Complementary integration: Klepsidro - Countdown Timer for WooCommerce', 'propono'); ?></h2>
+            <p style="color: #50575e; line-height: 1.5;">
+                <?php esc_html_e('Klepsidro displays live sale countdown timers on product pages to build urgency. Urgency-driven shoppers who reach checkout convert into higher-value baskets when paired with Propono order bumps.', 'propono'); ?>
+            </p>
+            <?php if ($isTickerActive) : ?>
+                <p style="color: #007017; font-weight: 600; margin-bottom: 0;">
+                    <span class="dashicons dashicons-yes-alt" style="vertical-align: text-bottom;"></span>
+                    <?php esc_html_e('Klepsidro - Countdown Timer is active.', 'propono'); ?>
+                </p>
+            <?php else : ?>
+                <p style="margin-bottom: 0;">
+                    <a href="<?php echo esc_url(admin_url('plugin-install.php?s=' . rawurlencode('Klepsidro - Countdown Timer for WooCommerce') . '&tab=search&type=term')); ?>" class="button button-secondary">
+                        <?php esc_html_e('Explore Klepsidro Countdown', 'propono'); ?> &rarr;
+                    </a>
+                </p>
+            <?php endif; ?>
+        </div>
+        <?php
     }
 }
