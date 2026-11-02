@@ -147,6 +147,7 @@ final class Settings implements HasHooks
                 </table>
                 <?php submit_button(); ?>
             </form>
+            <?php $this->renderCompanionCard(); ?>
         </div>
         <?php
     }
@@ -254,5 +255,35 @@ final class Settings implements HasHooks
         $defaults = require BUMP_DIR . 'config/defaults.php';
 
         return array_merge($defaults, $stored);
+    }
+
+    /**
+     * Cross-recommendation card for sister plugins (Swift Buy Now).
+     * Strictly scoped to the Propono settings screen per WordPress.org Guideline 11.
+     */
+    private function renderCompanionCard(): void
+    {
+        $isSwiftActive = defined('Swift\\VERSION') || (function_exists('is_plugin_active') && (is_plugin_active('swift/plogins-swift.php') || is_plugin_active('plogins-swift/plogins-swift.php')));
+
+        ?>
+        <div class="card" style="max-width: 800px; margin-top: 24px; padding: 18px 22px;">
+            <h2 class="title" style="margin-top: 0; font-size: 15px;"><?php esc_html_e('Complementary integration: Swift - Buy Now Button for WooCommerce', 'propono'); ?></h2>
+            <p style="color: #50575e; line-height: 1.5;">
+                <?php esc_html_e('Swift sends shoppers straight from product pages or loops to checkout, skipping the cart. Combine it with Propono order bumps to convert instant buyers into higher-value orders.', 'propono'); ?>
+            </p>
+            <?php if ($isSwiftActive) : ?>
+                <p style="color: #007017; font-weight: 600; margin-bottom: 0;">
+                    <span class="dashicons dashicons-yes-alt" style="vertical-align: text-bottom;"></span>
+                    <?php esc_html_e('Swift - Buy Now Button is active.', 'propono'); ?>
+                </p>
+            <?php else : ?>
+                <p style="margin-bottom: 0;">
+                    <a href="<?php echo esc_url(admin_url('plugin-install.php?s=' . rawurlencode('Swift - Buy Now Button for WooCommerce') . '&tab=search&type=term')); ?>" class="button button-secondary">
+                        <?php esc_html_e('Explore Swift Buy Now', 'propono'); ?> &rarr;
+                    </a>
+                </p>
+            <?php endif; ?>
+        </div>
+        <?php
     }
 }
