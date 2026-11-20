@@ -32,8 +32,9 @@ The full source lives at [github.com/wppoland/propono](https://github.com/wppola
 
 == Screenshots ==
 
-1. The order-bump offer above the payment methods on the checkout, with a one-click checkbox that adds the product to the order.
-2. The Propono settings under WooCommerce: bump product, heading, checkbox label, description and optional special price.
+1. The order bump offer above the payment methods at checkout, with a one-click checkbox that adds the product to the order.
+2. Settings under WooCommerce > Order Bump: bump product, heading, checkbox label, description and optional special price.
+3. The order bump on a phone.
 
 == Translations ==
 
