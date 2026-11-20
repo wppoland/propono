@@ -189,7 +189,11 @@ final class BumpService implements HasHooks
             return;
         }
 
-        $override = (string) ($this->settings()['bump_price'] ?? '');
+        $settings = $this->settings();
+        $override = (string) ($settings['bump_price'] ?? '');
+        // A line flagged under a previously configured bump product keeps its
+        // own price; the override was set for the current one.
+        $bumpId = (int) ($settings['product_id'] ?? 0);
 
         if ('' === $override || ! is_numeric($override)) {
             return;
@@ -206,7 +210,8 @@ final class BumpService implements HasHooks
         }
 
         foreach ($cart->get_cart() as $key => $item) {
-            if (! empty($item[self::FLAG]) && isset($item['data']) && $item['data'] instanceof \WC_Product) {
+            if (! empty($item[self::FLAG]) && isset($item['data']) && $item['data'] instanceof \WC_Product
+                && (int) ($item['product_id'] ?? 0) === $bumpId) {
                 if ((int) ($item['quantity'] ?? 1) !== 1) {
                     $cart->set_quantity((string) $key, 1, false);
                 }
@@ -226,8 +231,12 @@ final class BumpService implements HasHooks
             return null;
         }
 
+        // Bound to the configured product, like the special price: a line left
+        // from a previous bump product is not this offer.
+        $bumpId = (int) ($this->settings()['product_id'] ?? 0);
+
         foreach (WC()->cart->get_cart() as $key => $item) {
-            if (! empty($item[self::FLAG])) {
+            if (! empty($item[self::FLAG]) && (int) ($item['product_id'] ?? 0) === $bumpId) {
                 return (string) $key;
             }
         }
@@ -257,8 +266,10 @@ final class BumpService implements HasHooks
     {
         $override = (string) ($settings['bump_price'] ?? '');
 
+        // Through the cart's tax display, like the line it adds, so a shop that
+        // enters prices net and shows them gross does not advertise the net one.
         if ('' !== $override && is_numeric($override)) {
-            return wc_price((float) $override);
+            return wc_price(wc_get_price_to_display($product, ['price' => (float) $override, 'display_context' => 'cart']));
         }
 
         return $product->get_price_html();

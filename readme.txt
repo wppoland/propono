@@ -4,7 +4,7 @@ Tags: woocommerce, order bump, upsell, checkout, conversion
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,10 @@ The full source lives at [github.com/wppoland/propono](https://github.com/wppola
 Propono is fully translatable and ships the `propono.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.3 =
+* Fixed: the offer box showed the special price before tax while the cart charged it with tax, in shops that enter prices without tax and display them with tax. The offer now shows the price the cart charges.
+* Fixed: after switching the bump to another product, a cart still holding the previous bump product got the new special price for it, and the offer showed the new product as already added. Both now apply only to the configured bump product.
 
 = 1.1.2 =
 * Security (medium): the optional special price now covers exactly one unit of the bump product and only while the cart holds another product. Before, a shopper could raise the bump quantity or remove everything else and buy any number of units at the special price.
@@ -80,6 +84,9 @@ Propono is fully translatable and ships the `propono.pot` template. Translations
 * Initial release: single checkout order bump with optional price override.
 
 == Upgrade Notice ==
+
+= 1.1.3 =
+Fixes the special bump price shown and charged in some tax setups. Update, nothing else to do.
 
 = 1.1.2 =
 Security release. Only shops that set a special bump price are exposed. Update, nothing else to do.
